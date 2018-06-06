@@ -1,3 +1,13 @@
-(.2m directory) in maven directory 
+To create webService in Eclipse:
 
-copy it and past it in C:\Utilisateur\"username"\
+
+1-(.2m directory) in maven directory.
+2-copy it and past it in C:\Utilisateur\"username"\
+3-go to eclipse create maven project.
+4- choose local remote then choose heroku app. 
+5- finish.
+6- put classes of control "RSData" in package where myResource.java exists.
+7- create other packages bean and control and put in their classes.
+8- alter control classes for database connection : "remove password "
+
+
