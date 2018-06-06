@@ -1,0 +1,153 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.navigationviewanddeveloper.RechercherLogement">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/submit"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/envoyer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetLayout"
+            app:layout_constraintVertical_bias="0.49" />
+
+        <Spinner
+            android:id="@+id/localiteSpinner"
+            android:layout_width="0dp"
+            android:layout_height="22dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titreRecherche" />
+
+        <android.support.design.widget.TextInputLayout
+            android:visibility="gone"
+            android:id="@+id/budgetLayout"
+            android:layout_width="321dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="31dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/typeSpinner">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/budget"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/budget"
+                android:inputType="number" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/titreRecherche"
+            android:layout_width="wrap_content"
+            android:layout_height="37dp"
+            android:layout_marginTop="92dp"
+            android:fontFamily="serif"
+            android:text="@string/entrez_vos_crit_res"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/typeSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/localiteSpinner" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="44dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginStart="32dp"
+            android:max="9999999"
+            android:min="0"
+            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/min"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_marginEnd="310dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/max"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:layout_marginEnd="17dp"
+            android:layout_marginStart="235dp"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textColor="@color/colorPrimary"
+            app:layout_constraintBottom_toTopOf="@+id/submit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/min"
+            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+        <TextView
+            android:id="@+id/budgetTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="163dp"
+            android:layout_marginStart="163dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="serif"
+            android:text="Budget"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/seekBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/budgetLayout" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</FrameLayout>

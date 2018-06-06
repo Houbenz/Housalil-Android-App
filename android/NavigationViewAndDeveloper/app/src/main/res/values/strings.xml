@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">The Housalil</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_login">Se connecter</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="navigation_drawer_openC">Open navigation drawerC</string>
+    <string name="navigation_drawer_closeC">close navigation drawerC</string>
+    <string name="navigation_drawer_openA">Open navigation drawerA</string>
+    <string name="navigation_drawer_closeA">close navigation drawerA</string>
+    <string name="envoyer">Envoyer</string>
+    <string name="entrez_vos_crit_res">Entrez vos critères</string>
+    <string name="budget">budget</string>
+
+    <string-array name="typelogement">
+        <item value="">Toutes types</item>
+        <item value="">F2</item>
+        <item value="">F3</item>
+        <item value="">F4</item>
+        <item value="">F5</item>
+
+    </string-array>
+
+    <string-array name="localite">
+        <item>Toutes localités</item>
+        <item>1600 khroub</item>
+        <item>didouch mourad</item>
+        <item>111 Teleghema</item>
+        <item>uv 4 ali mendejli</item>
+        <item>uv 17 ali mendejli</item>
+    </string-array>
+
+    <string-array name="etat">
+
+        <item>termine</item>
+        <item>annule</item>
+        <item>clientabsent</item>
+        <item>agentabsent</item>
+    </string-array>
+</resources>

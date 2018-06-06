@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/consulterVisite"
+            android:title="Consulter Visite"
+            android:icon="@drawable/visite_ic_24dp"/>
+        <item
+            android:id="@+id/rechercherLogement"
+            android:title="Rechercher un logement"
+            android:icon="@drawable/ic_search_24dp"
+            />
+        <item
+            android:id="@+id/consulterCompte"
+            android:title="Consulter votre compte"
+            android:icon="@drawable/compte_ic_24dp"/>
+        <item
+            android:id="@+id/deconnect"
+            android:title="Se déconnecter"
+            android:icon="@drawable/deconnect_ic_24dp"/>
+    </group>
+</menu>

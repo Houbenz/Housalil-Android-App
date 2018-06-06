@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.navigationviewanddeveloper.ChoisirLogementModfier">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/dateHeureInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="116dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date et Heure" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/agentInput"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="65dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateHeureInput">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Agent" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="136dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="158dp"
+        android:layout_marginEnd="49dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="66dp"
+        android:text="envoyer"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/modifier"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/agentInput" />
+
+    <Button
+        android:id="@+id/modifier"
+        style="@style/ButtonColorModifier"
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="158dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="66dp"
+        android:text="MODIFIER"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/agentInput" />
+
+</android.support.constraint.ConstraintLayout>

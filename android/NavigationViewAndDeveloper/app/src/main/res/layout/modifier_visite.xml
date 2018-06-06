@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="350dp"
+    android:layout_height="350dp"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/dateheure"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="50dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date et heure" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/modifier"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginLeft="24dp"
+        android:text="modifier" />
+
+
+    <Button
+        android:id="@+id/annulerVisite"
+        style="@android:style/Widget.DeviceDefault.Button.Inset"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="24dp"
+        android:text="Annuler Cette Visite" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/Confirmer"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Confirmer" />
+
+        <Button
+            android:id="@+id/fermer"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Fermer" />
+    </LinearLayout>
+</LinearLayout>
