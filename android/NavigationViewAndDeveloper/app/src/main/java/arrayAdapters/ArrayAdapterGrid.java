@@ -47,6 +47,7 @@ public class ArrayAdapterGrid extends ArrayAdapter<Logement> {
         type.setText(logement.getType());
         localite.setText(logement.getLocalite().getAddress());
 
+        imageL.setImageResource(R.drawable.apartement);
         View v =logement_layout.findViewById(R.id.linear);
         v.setElevation(24);
         return logement_layout;

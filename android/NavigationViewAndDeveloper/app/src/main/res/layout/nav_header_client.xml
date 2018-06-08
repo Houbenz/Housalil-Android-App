@@ -8,11 +8,16 @@
     android:gravity="bottom"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
+
+    <TextView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="91dp"
-        app:srcCompat="@drawable/ad" />
+        android:layout_gravity="center"
+        android:layout_marginRight="16dp"
+        android:text="Bienvenue"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/companytitle"

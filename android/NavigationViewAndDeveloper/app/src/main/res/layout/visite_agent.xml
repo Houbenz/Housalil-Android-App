@@ -43,9 +43,9 @@
 
             <ImageView
                 android:id="@+id/imagelogement"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
-                app:srcCompat="@drawable/side_nav_bar" />
+                app:srcCompat="@drawable/apartement" />
 
             <View
                 style="@style/divider"

@@ -122,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="48dp"
             android:layout_marginEnd="17dp"
-            android:layout_marginStart="235dp"
+            android:layout_marginStart="225dp"
             android:layout_marginTop="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/colorPrimary"
