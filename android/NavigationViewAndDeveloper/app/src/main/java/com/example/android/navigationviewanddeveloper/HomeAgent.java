@@ -1,5 +1,6 @@
 package com.example.android.navigationviewanddeveloper;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.content.DialogInterface;
@@ -47,20 +48,30 @@ public class HomeAgent extends AppCompatActivity implements ConsulterVisiteAgent
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        navigationView  = (NavigationView)findViewById(R.id.nav_view_agent);
 
         username_agent=getIntent().getStringExtra("username");
         final Bundle bundle =new Bundle();
         bundle.putString("username",username_agent);
         bundle.putString("type","Agent");
-
+        consulterVisiteAgent.setArguments(bundle);
+        consulterCompte.setArguments(bundle);
 
         final FragmentManager fragmentManager=getSupportFragmentManager();
-
-        /********************************************THE NAVIGATION VIEW TO SWITCH BETWEEN TABS for Agent ***************/
-        navigationView  = (NavigationView)findViewById(R.id.nav_view_agent);
+        FragmentTransaction transactionOnlaunch=fragmentManager.beginTransaction();
 
 
+        transactionOnlaunch=fragmentManager.beginTransaction();
+        transactionOnlaunch.replace(R.id.content_frame_agent,consulterVisiteAgent);
+       // transactionOnlaunch.addToBackStack(null);
+        transactionOnlaunch.commit();
 
+
+
+
+
+
+/********************************************THE NAVIGATION VIEW TO SWITCH BETWEEN TABS for Agent ***************/
         NavigationView.OnNavigationItemSelectedListener listener = new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected( MenuItem item) {
@@ -68,8 +79,7 @@ public class HomeAgent extends AppCompatActivity implements ConsulterVisiteAgent
 
                 FragmentTransaction fragmentTransaction;
 
-                consulterVisiteAgent.setArguments(bundle);
-                consulterCompte.setArguments(bundle);
+
 
                 item.setChecked(true);
 

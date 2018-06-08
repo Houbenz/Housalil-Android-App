@@ -19,12 +19,15 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 import android.widget.NumberPicker;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
@@ -36,6 +39,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Map;
 
 import arrayAdapters.ArrayAdapterVisite;
 import beans.Localite;
@@ -93,25 +97,23 @@ public class ConsulterVisiteClient extends Fragment {
 
                 //ListView des visites du client
                 ArrayAdapterVisite arrayAdapterV = new ArrayAdapterVisite(getContext(),visites);
-                ListView listView =(ListView)frameLayout.findViewById(R.id.mylistview);
+                final ListView listView =(ListView)frameLayout.findViewById(R.id.mylistview);
+
                 listView.setAdapter(arrayAdapterV);
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                        //TODO Create dialog for use cases modifierVisite and annulerVisite
-
-                        //TODO ADD request to modifierVisite and annulerVisite
 
                         //Dialog pour modifer la visite ou l'annuler
                         final Dialog modifierVisite =new Dialog(getContext());
+                        final TextView etat = (TextView)view.findViewById(R.id.etat);
 
                         modifierVisite.setTitle("Modifier visite");
                         modifierVisite.setContentView(R.layout.modifier_visite);
 
                         //bouton pour la boite dialogue modifierVisite
                         final Button fermer =(Button)modifierVisite.findViewById(R.id.fermer);
-                        final Button modifier =(Button)modifierVisite.findViewById(R.id.modifier);
                         final Button annulerVisite=(Button)modifierVisite.findViewById(R.id.annulerVisite);
 
                         //input dateheure pour afficher date et heure choisit pour etre modifié
@@ -119,63 +121,46 @@ public class ConsulterVisiteClient extends Fragment {
 
 
                         //afficher la date de la visite concerné dans l'input dateheure
-                        Visite visite =(Visite)adapterView.getItemAtPosition(position);
+                        final Visite visite =(Visite)adapterView.getItemAtPosition(position);
                         Date dateAffiche =new Date(visite.getVisite_date());
                         Time heureAffiche =new Time(visite.getVisite_heure());
 
                         dateheure.getEditText().setText(dateAffiche+" a "+heureAffiche);
                         dateheure.setEnabled(false);
 
-
-                        modifier.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                Calendar calendar =Calendar.getInstance();
-                                int day   =calendar.get(Calendar.DAY_OF_MONTH);
-                                int month =calendar.get(Calendar.MONTH);
-                                int year  =calendar.get(Calendar.YEAR);
-
-                                //listener de datePicker quand on choisit une date puis on clique ok
-                                DatePickerDialog.OnDateSetListener listener =new DatePickerDialog.OnDateSetListener() {
-                                    @Override
-                                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-
-                                        Calendar date = Calendar.getInstance();
-                                        date.set(Calendar.YEAR,year);
-                                        date.set(Calendar.MONTH,month);
-                                        date.set(Calendar.DATE,day);
-
-                                        Date sDate = new Date(date.getTime().getTime());
-
-                                        dateheure.getEditText().setText(sDate.toString());
-
-
-                                        //apres le choix de la date on affiche dialog pour choix de l'heure
-                                        createHourdialog(dateheure);
-                                    }};
-
-                                //datePicker configuration
-                                DatePickerDialog datePickerDialog= new DatePickerDialog(getContext()
-                                        ,R.style.AlertDialogStyle, listener,year,month,day);
-
-                                Calendar calendar1 =Calendar.getInstance();
-
-                                calendar1.add(Calendar.DATE,1);
-                                long todayLong =calendar1.getTime().getTime();
-
-                                calendar.add(Calendar.MONTH,3);
-                                long dayMaxLong =calendar.getTime().getTime();
-
-                                datePickerDialog.getDatePicker().setMinDate(todayLong);
-                                datePickerDialog.getDatePicker().setMaxDate(dayMaxLong);
-                                datePickerDialog.show();
-                            }});
+                        Visite visiteAnnuler=(Visite)listView.getSelectedItem();
 
                         //pour annuler une visite
                         annulerVisite.setOnClickListener(new View.OnClickListener() {
                             @Override public void onClick(View view) {
+                                Links links =new Links();
+                                etat.setText("annule");
+
                                 //TODO requete pour annuler la visite
+                                StringRequest stringRequest= new StringRequest(Request.Method.POST,links.getAnnulerVisite(),
+                                        new Response.Listener<String>() {
+                                    @Override
+                                    public void onResponse(String response) {
+
+                                        Toast.makeText(getContext(),response,Toast.LENGTH_LONG).show();
+                                    }
+                                }, new Response.ErrorListener() {
+                                    @Override
+                                    public void onErrorResponse(VolleyError error) {
+                                        Toast.makeText(getContext(),"error "+error,Toast.LENGTH_LONG).show();
+                                    }}){
+                                    @Override
+                                    protected Map<String, String> getParams() throws AuthFailureError {
+                                        HashMap<String,String> params = new HashMap<String ,String >();
+
+                                        params.put("id",visite.getId()+"");
+
+                                        return params;
+                                    }
+                                };
+                                RequestQueue requestQueue =Volley.newRequestQueue(getContext());
+                                requestQueue.add(stringRequest);
+
                                 modifierVisite.dismiss();
                             }});
 
@@ -197,7 +182,7 @@ public class ConsulterVisiteClient extends Fragment {
             @Override public void onSuccesConsulterCompte(Utilisateur utilisateur, Localite localite) {}
 
         },username);
-        
+
         return frameLayout;
     }
     public void onButtonPressed(int position) {

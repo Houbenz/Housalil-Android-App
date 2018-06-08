@@ -101,9 +101,18 @@ public class RechercherLogement extends Fragment {
 
                 int budget =seekBar.getProgress();
 
-               String localite =""+(localiteSpinner.getSelectedItemPosition());
-               String typeLogement =typeSpinner.getSelectedItem().toString();
+                String localite;
+                if(localiteSpinner.getSelectedItemPosition()==0)
+                    localite="%";
+                else
+                    localite =""+(localiteSpinner.getSelectedItemPosition());
 
+
+                String typeLogement;
+                if(typeSpinner.getSelectedItem().toString().equals("Toutes types"))
+                    typeLogement ="%";
+                else
+                    typeLogement =typeSpinner.getSelectedItem().toString();
 
                 Intent intent =new Intent(getContext(),ChoisirLogementA.class);
                 intent.putExtra("localite",localite);

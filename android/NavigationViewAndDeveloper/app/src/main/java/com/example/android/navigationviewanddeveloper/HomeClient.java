@@ -1,6 +1,7 @@
 package com.example.android.navigationviewanddeveloper;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -55,9 +56,30 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
 
 
 
-        /*****************************THE NAVIGATION VIEW TO SWITCH BETWEEN TABS FOR CLIENT ********************************/
+
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view_client);
 
+
+        Bundle bundle =new Bundle();
+
+        bundle.putString("type","Client");
+        bundle.putString("username",username);
+        consulterVisiteClient.setArguments(bundle);
+        rechercherLogement.setArguments(bundle);
+        consulterCompte.setArguments(bundle);
+
+        FragmentTransaction transactionOnlaunch=fragmentManager.beginTransaction();
+
+
+        transactionOnlaunch=fragmentManager.beginTransaction();
+        transactionOnlaunch.replace(R.id.content_frame_client,consulterVisiteClient,"consulterVisiteClient");
+        //transactionOnlaunch.addToBackStack(null);
+        transactionOnlaunch.commit();
+
+
+
+
+        /*****************************THE NAVIGATION VIEW TO SWITCH BETWEEN TABS FOR CLIENT ********************************/
         NavigationView.OnNavigationItemSelectedListener listener =new NavigationView.OnNavigationItemSelectedListener() {
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
@@ -65,15 +87,6 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
 
 
                 FragmentTransaction fragmentTransaction;
-                /**Fragments**/
-
-                Bundle bundle =new Bundle();
-
-                bundle.putString("type","Client");
-                bundle.putString("username",username);
-                consulterVisiteClient.setArguments(bundle);
-                rechercherLogement.setArguments(bundle);
-                consulterCompte.setArguments(bundle);
 
                 switch (item.getItemId()){
                     case R.id.consulterVisite:{
@@ -135,9 +148,10 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
     public void disconnectionAlert() {
         AlertDialog.Builder builder =new AlertDialog.Builder(this,R.style.AlertDialogStyle);
         builder.setTitle("Disconnection");
-        builder.setMessage("would you like to disconnect ?")
-                .setCancelable(true)
-                .setPositiveButton("disconnect", new DialogInterface.OnClickListener() {
+        builder.setMessage("would you like to disconnect ?").
+                setCancelable(true)
+                .setPositiveButton("disconnect",
+                new DialogInterface.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {

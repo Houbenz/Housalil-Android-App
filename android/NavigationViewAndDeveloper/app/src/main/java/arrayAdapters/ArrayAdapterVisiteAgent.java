@@ -47,6 +47,7 @@ public class ArrayAdapterVisiteAgent extends ArrayAdapter<Visite> {
         TextView type=(TextView)view.findViewById(R.id.type);
         TextView localite=(TextView)view.findViewById(R.id.localite);
         TextView dateheure=(TextView)view.findViewById(R.id.dateheure);
+        TextView etat=(TextView)view.findViewById(R.id.etat);
         RatingBar preavis=(RatingBar) view.findViewById(R.id.preavisO);
 
         client.setText(visite.getUsername_client());
@@ -57,7 +58,7 @@ public class ArrayAdapterVisiteAgent extends ArrayAdapter<Visite> {
         dateheure.setText(date+" à "+heure);
         preavis.setIsIndicator(true);
         preavis.setRating(visite.getPreavis());
-
+        etat.setText(visite.getEtat());
          //   ViewGroup.LayoutParams lp =view.getLayoutParams();
          //   view.requestLayout();
         return view;

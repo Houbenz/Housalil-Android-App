@@ -43,6 +43,7 @@ public class ArrayAdapterVisite extends ArrayAdapter<Visite> {
         TextView dateheure=(TextView)visite_client.findViewById(R.id.dateheure);
         TextView logement=(TextView)visite_client.findViewById(R.id.logement);
         ImageView imagelog=(ImageView) visite_client.findViewById(R.id.imagelog);
+        TextView etat =(TextView)visite_client.findViewById(R.id.etat);
 
         agent.setText(visite.getUsername_agent());
 
@@ -52,7 +53,7 @@ public class ArrayAdapterVisite extends ArrayAdapter<Visite> {
 
         dateheure.setText(date+" à "+heure);
         logement.setText(visite.getLogement());
-
+        etat.setText(visite.getEtat());
        // imagelog.setImageResource(R.mipmap.ic_launcher);
 
 

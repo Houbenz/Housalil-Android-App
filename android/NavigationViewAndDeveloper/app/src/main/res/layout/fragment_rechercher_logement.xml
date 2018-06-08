@@ -93,7 +93,7 @@
             android:layout_marginBottom="44dp"
             android:layout_marginEnd="32dp"
             android:layout_marginStart="32dp"
-            android:max="9999999"
+            android:max="999999999"
             android:min="0"
             app:layout_constraintBottom_toTopOf="@+id/submit"
             app:layout_constraintEnd_toEndOf="parent"

@@ -103,6 +103,7 @@ public class ConsulterVisiteAgent extends Fragment {
                         @Override
                         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                             final RatingBar preavisO =(RatingBar)view.findViewById(R.id.preavisO);
+                            final  TextView etat=(TextView)view.findViewById(R.id.etat);
                             final Visite visite= (Visite)adapterView.getItemAtPosition(position);
                     /**********************ETABLIR PREAVIS DIALOGUE********************************************/
                             final Dialog etablirPreavisDialog = new Dialog(getContext());
@@ -142,6 +143,7 @@ public class ConsulterVisiteAgent extends Fragment {
                             send.setOnClickListener(new View.OnClickListener() {
                                 @Override public void onClick(View view) {
                                     preavisO.setRating(preavis.getRating());
+                                    etat.setText(etatSpinner.getSelectedItem().toString());
 
                                     Links links=new Links();
                                     //requete pour envoyer le preavis etablit
@@ -174,7 +176,6 @@ public class ConsulterVisiteAgent extends Fragment {
 
                                     RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                                     requestQueue.add(stringRequest);
-
                                     etablirPreavisDialog.dismiss();
                                 }});
                             Button annuler=(Button)etablirPreavisDialog.findViewById(R.id.annuler);

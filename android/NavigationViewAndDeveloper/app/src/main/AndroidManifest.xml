@@ -17,7 +17,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".HomeClient"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".LoginActivity"
             android:screenOrientation="portrait">
@@ -36,7 +36,8 @@
         <activity
             android:name=".HomeAgent"
             android:screenOrientation="portrait" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".EtablirPreavis"></activity>
     </application>
 
 </manifest>

@@ -1,13 +1,9 @@
 package databases;
 
-import java.net.Inet4Address;
 
 
 public class Links {
 
-
-
-    //private String add =Inet4Address.getLocalHost().getHostAddress();
 
     private String SERVER_IP_ADDRESS="http://192.168.1.5:8080";
 
@@ -53,5 +49,9 @@ public class Links {
 
     public String getValiderVisiteURL(){
         return  SERVER_IP_ADDRESS+"/housalil/agent/validerVisite";
+    }
+
+    public String getAnnulerVisite(){
+        return  SERVER_IP_ADDRESS+"/housalil/client/annulerVisite";
     }
 }

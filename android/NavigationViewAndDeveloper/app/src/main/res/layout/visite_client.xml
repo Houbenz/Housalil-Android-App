@@ -103,5 +103,29 @@
             android:layout_weight="1"
             android:text="Agent"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <View style="@style/divider" android:layout_marginTop="0dp" />
+
+        <TextView
+            android:id="@+id/etatTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:text="Etat de la visite" />
+
+        <TextView
+            android:id="@+id/etat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
+            android:text="etat"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
     </LinearLayout>
 </android.support.v7.widget.CardView></RelativeLayout>
