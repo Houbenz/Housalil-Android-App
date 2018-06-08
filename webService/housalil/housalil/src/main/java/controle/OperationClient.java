@@ -95,8 +95,10 @@ public class OperationClient {
 					}
 				}
 				if (!visites.isEmpty()) {
+					  connection.close();
 					return visites;
 				}
+				  connection.close();
 			} catch (SQLException e) {
 				return visites;
 			}
@@ -121,11 +123,12 @@ public class OperationClient {
             preparedStatement.setInt(3,idVisite);
             preparedStatement.executeUpdate();
 
-            return "Visite date modifié";
+            connection.close();
+            return "Visite date modifie";
         }
         catch (SQLException e)
         {
-            return "Modfication échouée";
+            return "Modfication echouee";
         }
     }
 
@@ -148,9 +151,10 @@ public class OperationClient {
 			preparedStatement.setInt(6, visite.getPreavis());
 			preparedStatement.setString(7, visite.getEtat());
 			preparedStatement.executeUpdate();
+			  connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			return "Opération échouée";
+			return "Operation echouee";
 
 		}
 		return "succes";
@@ -174,6 +178,7 @@ public class OperationClient {
 						new Localite(resultSet.getInt("localite.id"), resultSet.getString("localite.address")));
 			}
 
+			  connection.close();
 			return agent;
 		} catch (SQLException e) {
 			return agent;
@@ -189,9 +194,10 @@ public class OperationClient {
 			preparedStatement.setString(1, "Annule");
 			preparedStatement.setInt(2, idVisite);
 			preparedStatement.executeUpdate();
-			return "Visite annulé";
+			  connection.close();
+			return "Visite annule";
 		} catch (SQLException e) {
-			return "Opération échouée";
+			return "Operation échouee";
 		}
 	}
 
@@ -213,6 +219,7 @@ public class OperationClient {
 						resultSet.getString("username_agent"), resultSet.getString("logement"), date.getTime(),
 						time.getTime(), resultSet.getInt("preavis"), resultSet.getString("etat")));
 			}
+			  connection.close();
 		} catch (SQLException e) {
 			return visites;
 		}
@@ -239,7 +246,7 @@ public class OperationClient {
 						resultSet.getDate("notification_date"), resultSet.getTime("notification_heure"),
 						resultSet.getString("etat")));
 			}
-
+			  connection.close();
 			return notifications;
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -259,6 +266,7 @@ public class OperationClient {
 			preparedStatement.setInt(3, idNotification);
 			preparedStatement.setString(4, "envoye");
 			preparedStatement.executeUpdate();
+			  connection.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -275,7 +283,9 @@ public class OperationClient {
 			preparedStatement.setString(2, "envoye");
 			resultSet = preparedStatement.executeQuery();
 			resultSet.next();
+			  
 			return resultSet.getInt("nombreNotification");
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return 0;
@@ -294,17 +304,4 @@ public class OperationClient {
 		}
 	}
 
-	public static void main(String[] args) {
-		
-		String aze ="aze09:00:00aze";
-		
-		
-		String cut =aze.substring(3,11);
-		
-		System.out.println(cut);
-	Time time = Time.valueOf(cut);
-	
-	System.out.println(time);
-
-	}
 }

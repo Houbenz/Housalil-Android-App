@@ -1,8 +1,11 @@
 package com.example.android.navigationviewanddeveloper;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -76,7 +79,7 @@ public class ConsulterCompte extends Fragment  {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
@@ -152,6 +155,7 @@ public class ConsulterCompte extends Fragment  {
 
         send.setOnClickListener(new View.OnClickListener() {
             Links links = new Links();
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public void onClick(View view) {
                 final String nom1 = nom.getEditText().getText().toString();
@@ -184,6 +188,8 @@ public class ConsulterCompte extends Fragment  {
 
 
                         Map<String, String> params = new HashMap<String, String>();
+
+                        params.put("originalUser",usernameI);
                         params.put("nom", nom1);
                         params.put("prenom", prenom1);
                         params.put("username", username1);
@@ -194,6 +200,19 @@ public class ConsulterCompte extends Fragment  {
                 };
                 RequestQueue requestQueue = Volley.newRequestQueue(getContext());
                 requestQueue.add(stringRequest);
+
+
+                if(type.equals("Client")){
+                    Intent intent =new Intent(getContext(),HomeClient.class);
+                    intent.putExtra("username",username1);
+                    startActivity(intent);
+                }else{
+                    Intent intent =new Intent(getContext(),HomeAgent.class);
+                    intent.putExtra("username",username1);
+                    startActivity(intent);
+                }
+                    getActivity().finishAffinity();
+
             }
             }
         });

@@ -36,20 +36,26 @@ public class RSDataUtilisateur {
 	@POST
 	@Path("modifierCompte")
 	@Produces(MediaType.TEXT_HTML)
-	public String modifierCompte(@FormParam("nom")String nom,@FormParam("prenom")String prenom,
+	public String modifierCompte(@FormParam("originalUser")String originalUser
+			,@FormParam("nom")String nom,@FormParam("prenom")String prenom,
 			@FormParam("username")String username,@FormParam("email")String email,@FormParam("numTel")String numTel) {
 			
 			OperationUtilisateur operationUtilisateur =new OperationUtilisateur();
 			
 			Utilisateur utilisateur =new Utilisateur();
+			System.out.println(nom +" "+prenom+" "+username+" "+email+" "+numTel);
 			utilisateur.setNom(nom);
 			utilisateur.setPrenom(prenom);
 			utilisateur.setEmail(email);
 			utilisateur.setUsername(username);
 			utilisateur.setNumTel(numTel);
 			
+			System.out.println(utilisateur.getNom()+" "+utilisateur.getNom()+
+					" "+utilisateur.getUsername()+" "+utilisateur.getEmail()+" "+utilisateur.getNumTel()+"  original : "
+							+ ""+originalUser);
 			
-			String response = operationUtilisateur.modifierCompte(username, utilisateur);
+			
+			String response = operationUtilisateur.modifierCompte(originalUser, utilisateur);
 		
 		return response;
 	}

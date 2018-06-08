@@ -31,21 +31,25 @@ public class OperationVisiteur
             {
                 if (resultSet.getString("etat").equals("inactif") || resultSet.getString("etat").equals("bloque"))
                 {
+                	connection.close();
                     return "Votre compte est inaccessible";
                 }
                 else
                 {
-                    return resultSet.getString("type");
+                	String type =resultSet.getString("type");
+                	connection.close();
+                    return type;
                 }
             }
             else
             {
+            	connection.close();
                 return "Username/Password Invalide";
             }
         }
         catch (SQLException e)
         {
-            return "Opération échouée";
+            return "Operation echouee";
         }
     }
 
@@ -63,6 +67,7 @@ public class OperationVisiteur
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next())
             {
+            	connection.close();
                 return "Username/Email taken";
             }
 
@@ -94,16 +99,18 @@ public class OperationVisiteur
 
             if (nombreTuple == 0)
             {
-                return "Inscription échouée";
+            	connection.close();
+                return "Inscription echouee";
             }
             else
             {
+            	connection.close();
                 return "Inscription faite";
             }
         }
         catch (SQLException e)
         {
-            return "Opération échouée";
+            return "Operation echouee";
         }
     }
 
@@ -127,16 +134,18 @@ public class OperationVisiteur
 
             if(nombreTuples == 0)
             {
+            	connection.close();
                 return "Opération échouée";
             }
             else
             {
+            	connection.close();
                 return "Message envoyé";
             }
         }
         catch (SQLException e)
         {
-            return "Opération échouée";
+            return "Operation echouee";
         }
     }
 
@@ -169,6 +178,7 @@ public class OperationVisiteur
                         resultSet.getString("agent_service"));
                 logements.add(logement);
             }
+            connection.close();
         }
         catch (SQLException e)
         {
@@ -202,6 +212,7 @@ public class OperationVisiteur
                         new Localite(resultSet.getInt("localite.id"), resultSet.getString("localite.address")));
                 agents.add(agent);
             }
+            connection.close();
         }
         catch (SQLException e)
         {
@@ -225,16 +236,4 @@ public class OperationVisiteur
         }
     }
     
-    public static void main(String[] args) {
-		/*OperationVisiteur operationVisiteur=new OperationVisiteur();
-		
-		Utilisateur utilisateur=new Utilisateur("fighter","azerty123","amin","benzagot","madl@gmail.com",
-				"0657253673","actif","client","/Assets/Images/accounts.png");
-		String uaze = operationVisiteur.inscription(utilisateur, 0);
-		
-		System.out.println(uaze);*/
-    	
-    	String k = "12345";
-    	System.out.println(k.length());
-	}
 }

@@ -1,6 +1,5 @@
 package com.example.android.navigationviewanddeveloper;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.content.DialogInterface;
@@ -14,7 +13,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,6 +25,7 @@ public class HomeAgent extends AppCompatActivity implements ConsulterVisiteAgent
 
     final ConsulterCompte consulterCompte = new ConsulterCompte();
     final ConsulterVisiteAgent consulterVisiteAgent =new ConsulterVisiteAgent();
+    final EntryMSG entryMSG = new EntryMSG();
     NavigationView navigationView;
 
     @Override
@@ -48,21 +47,25 @@ public class HomeAgent extends AppCompatActivity implements ConsulterVisiteAgent
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        username_agent=getIntent().getStringExtra("username");
+
+
         navigationView  = (NavigationView)findViewById(R.id.nav_view_agent);
 
-        username_agent=getIntent().getStringExtra("username");
+
         final Bundle bundle =new Bundle();
         bundle.putString("username",username_agent);
         bundle.putString("type","Agent");
         consulterVisiteAgent.setArguments(bundle);
         consulterCompte.setArguments(bundle);
+        entryMSG.setArguments(bundle);
 
         final FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction transactionOnlaunch=fragmentManager.beginTransaction();
 
 
         transactionOnlaunch=fragmentManager.beginTransaction();
-        transactionOnlaunch.replace(R.id.content_frame_agent,consulterVisiteAgent);
+        transactionOnlaunch.replace(R.id.content_frame_agent, entryMSG);
        // transactionOnlaunch.addToBackStack(null);
         transactionOnlaunch.commit();
 
@@ -78,7 +81,6 @@ public class HomeAgent extends AppCompatActivity implements ConsulterVisiteAgent
 
 
                 FragmentTransaction fragmentTransaction;
-
 
 
                 item.setChecked(true);

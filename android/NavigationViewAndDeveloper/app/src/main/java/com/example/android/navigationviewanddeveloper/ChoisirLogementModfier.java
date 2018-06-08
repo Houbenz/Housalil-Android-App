@@ -76,7 +76,7 @@ public class ChoisirLogementModfier extends AppCompatActivity {
         final java.sql.Date sDate;
         java.util.Date jDate;
 
-        if(hour<15) {
+        if(hour<16) {
             jDate = cal.getTime();
              sDate= new Date(jDate.getTime());
 
@@ -86,7 +86,6 @@ public class ChoisirLogementModfier extends AppCompatActivity {
              sDate = new Date(jDate.getTime());
         }
 
-        Log.i("DA",sDate.toString() +"   hour "+hour);
 
  /************************************DRAW FETCHED DATA IN LAYOUT***************************************/
 

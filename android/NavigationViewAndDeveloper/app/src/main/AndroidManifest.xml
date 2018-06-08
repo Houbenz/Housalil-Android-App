@@ -37,7 +37,6 @@
             android:name=".HomeAgent"
             android:screenOrientation="portrait" />
         <activity android:name=".Register" />
-        <activity android:name=".EtablirPreavis"></activity>
     </application>
 
 </manifest>

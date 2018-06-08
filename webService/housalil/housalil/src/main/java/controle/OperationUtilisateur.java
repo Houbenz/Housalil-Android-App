@@ -47,6 +47,7 @@ public class OperationUtilisateur
                             resultSet.getString("type"),
                             resultSet.getString("profile_picture"),
                             new Localite(resultSet.getInt("id") , resultSet.getString("address")));
+                    connection.close();
                     return utilisateur ;
                 }
             }
@@ -68,6 +69,7 @@ public class OperationUtilisateur
                             resultSet.getString("profile_picture"));
                 }
             }
+            connection.close();
             return utilisateur;
         }
         catch (SQLException e)
@@ -97,14 +99,14 @@ public class OperationUtilisateur
                 preparedStatement.setString(2, username);
                 preparedStatement.executeUpdate();
             }
-*/
-            return "Compte Modifiée";
+*/			connection.close();
+            return "Compte Modifiee";
         }
         catch (SQLException e)
         {
             if(e.getMessage().split(" ")[0].equals("Duplicate"))
             {
-                return "Username/Password exist déja";
+                return "Username/Password exist deja";
             }
             else
             {
@@ -127,16 +129,18 @@ public class OperationUtilisateur
 
             if(nombreTuple == 0)
             {
+            	connection.close();
                 return "Mot de pass incorrect";
             }
             else
             {
-                return "Mot de pass changé";
+            	connection.close();
+                return "Mot de pass change";
             }
         }
         catch (SQLException e)
         {
-            return "Opération échouée";
+            return "Operation echouee";
         }
     }
 
@@ -149,12 +153,13 @@ public class OperationUtilisateur
             preparedStatement.setString(1, "demandebloque");
             preparedStatement.setString(2, username);
             preparedStatement.executeUpdate();
-
-            return "Demande envoyé";
+            
+            connection.close();
+            return "Demande envoye";
         }
         catch (SQLException e)
         {
-            return "Opération échouée";
+            return "Operation echouee";
         }
     }
 

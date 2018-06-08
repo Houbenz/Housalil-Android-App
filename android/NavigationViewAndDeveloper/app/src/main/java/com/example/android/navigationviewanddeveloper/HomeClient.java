@@ -14,11 +14,16 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
+
+import org.w3c.dom.Text;
 
 public class HomeClient extends AppCompatActivity implements ConsulterVisiteClient.OnFragmentInteractionListener
         ,RechercherLogement.OnFragmentInteractionListener,ConsulterCompte.OnFragmentInteractionListener {
@@ -28,7 +33,7 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
     final RechercherLogement rechercherLogement = new RechercherLogement();
     final ConsulterVisiteClient consulterVisiteClient =new ConsulterVisiteClient();
     final ConsulterCompte consulterCompte =new ConsulterCompte();
-
+    final EntryMSG blankFragment = new EntryMSG();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +60,6 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
         toggle.syncState();
 
 
-
-
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view_client);
 
 
@@ -64,16 +67,18 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
 
         bundle.putString("type","Client");
         bundle.putString("username",username);
+
+
         consulterVisiteClient.setArguments(bundle);
         rechercherLogement.setArguments(bundle);
         consulterCompte.setArguments(bundle);
-
+        blankFragment.setArguments(bundle);
         FragmentTransaction transactionOnlaunch=fragmentManager.beginTransaction();
 
 
         transactionOnlaunch=fragmentManager.beginTransaction();
-        transactionOnlaunch.replace(R.id.content_frame_client,consulterVisiteClient,"consulterVisiteClient");
-        //transactionOnlaunch.addToBackStack(null);
+        transactionOnlaunch.replace(R.id.content_frame_client,blankFragment);
+       // transactionOnlaunch.addToBackStack(null);
         transactionOnlaunch.commit();
 
 
@@ -88,6 +93,7 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
 
                 FragmentTransaction fragmentTransaction;
 
+
                 switch (item.getItemId()){
                     case R.id.consulterVisite:{
                         Toast.makeText(getApplicationContext(),"consulter visite",Toast.LENGTH_SHORT).show();
@@ -98,6 +104,7 @@ public class HomeClient extends AppCompatActivity implements ConsulterVisiteClie
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                         drawerLayout.closeDrawers();
+
                         return true;
 
 

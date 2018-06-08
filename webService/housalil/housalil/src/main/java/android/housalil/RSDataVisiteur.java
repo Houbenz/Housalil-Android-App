@@ -27,9 +27,10 @@ public class RSDataVisiteur {
 	@Produces(MediaType.TEXT_HTML)
 	public String authentification(@FormParam("username") String username,@FormParam("password") String password) {
 		OperationVisiteur operationVisiteur=new OperationVisiteur();
-		System.out.println(operationVisiteur.authentification(username, password));
-		return operationVisiteur.authentification(username, password);
-		
+	
+		String response = operationVisiteur.authentification(username, password);
+		System.out.println(response+""+username+password);
+		return response;
 	}
 	
 	@POST

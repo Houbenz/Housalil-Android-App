@@ -1,9 +1,17 @@
 package controle;
 
-import bean.Visite;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+
+import bean.Visite;
 
 public class OperationAgent
 {
@@ -18,17 +26,43 @@ public class OperationAgent
     }
 
     /************************************* Valider Visite ********************************/
-    public String validerVisite(int idVisite , int preavisVisite , String etatVisite)
-    {
+    public String validerVisite(int idVisite, int preavisVisite, String etatVisite) {
         try {
             preparedStatement = connection.prepareStatement("UPDATE visite SET preavis = ? , etat = ? WHERE id = ?");
             preparedStatement.setInt(1, preavisVisite);
             preparedStatement.setString(2, etatVisite);
             preparedStatement.setInt(3, idVisite);
             preparedStatement.executeUpdate();
-        }catch (SQLException e)
-        {
-            return "Operation echoue";
+
+            /* Envoyer notification au client */
+            if (etatVisite.equals("agentabsent")) {
+                preparedStatement = connection.prepareStatement("SELECT * FROM visite WHERE visite.id = ?");
+                preparedStatement.setInt(1, idVisite);
+                resultSet = preparedStatement.executeQuery();
+                resultSet.next();
+
+                Date dateVisite = resultSet.getDate("visite_date");
+                Time heureVisite = resultSet.getTime("visite_heure");
+
+                if (dateVisite.after(Date.valueOf(LocalDate.now())) || heureVisite.after(Time.valueOf(LocalTime.now()))) {
+                    String titre = "Visite Annulé";
+                    String contenu = "bonjour, votre visite pour le " + resultSet.getDate("visite_date") + " à " + resultSet.getTime("visite_heure") + " a était annulé car l'agent va étre absent.";
+
+                    preparedStatement = connection.prepareStatement("INSERT INTO notification(username_client, titre , contenu , notification_date , notification_heure , etat) VALUES (?,?,?,?,?,?)");
+                    preparedStatement.setString(1, resultSet.getString("username_client"));
+                    preparedStatement.setString(2, titre);
+                    preparedStatement.setString(3, contenu);
+                    preparedStatement.setDate(4, Date.valueOf(LocalDate.now()));
+                    preparedStatement.setTime(5, Time.valueOf(LocalTime.now()));
+                    preparedStatement.setString(6, "envoye");
+                    preparedStatement.executeUpdate();
+                }
+                connection.close();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+          
+            return "Operation echouee";
         }
         return "success";
     }
@@ -54,6 +88,7 @@ public class OperationAgent
                         resultSet.getInt("preavis"),
                         resultSet.getString("etat")));
             }
+            connection.close();
         }
         catch(SQLException e)
         {
