@@ -5,7 +5,7 @@ package databases;
 public class Links {
 
 
-    private String SERVER_IP_ADDRESS="http://192.168.1.9:8080";
+    private String SERVER_IP_ADDRESS="http://192.168.43.210:8080";
 
     public Links()  {
     }
