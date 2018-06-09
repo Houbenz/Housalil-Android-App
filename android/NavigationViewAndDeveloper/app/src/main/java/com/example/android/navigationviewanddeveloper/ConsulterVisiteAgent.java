@@ -185,7 +185,7 @@ public class ConsulterVisiteAgent extends Fragment {
 
                                     etablirPreavisDialog.dismiss();
                                 }});
-
+                            if(etat.getText().toString().equals("encours"))
                             etablirPreavisDialog.show();
                         }
                     });

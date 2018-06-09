@@ -172,7 +172,9 @@ public class ConsulterVisiteClient extends Fragment {
                                 modifierVisite.dismiss();
                             }});
 
-                        modifierVisite.show();
+                            if(etat.getText().toString().equals("encours"))
+                            modifierVisite.show();
+
                     }
                 });
             }

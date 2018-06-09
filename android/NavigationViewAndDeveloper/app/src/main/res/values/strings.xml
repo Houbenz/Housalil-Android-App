@@ -45,7 +45,7 @@
     </string-array>
 
     <string-array name="etat">
-
+        <item>encours</item>
         <item>termine</item>
         <item>annule</item>
         <item>clientabsent</item>

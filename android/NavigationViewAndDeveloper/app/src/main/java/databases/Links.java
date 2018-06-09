@@ -5,12 +5,13 @@ package databases;
 public class Links {
 
 
-    private String SERVER_IP_ADDRESS="http://192.168.1.5:8080";
+    private String SERVER_IP_ADDRESS="http://192.168.1.9:8080";
 
     public Links()  {
     }
 
-    public String getLoginActivityURL(){
+    public String getLoginActivityURL()
+    {
         return SERVER_IP_ADDRESS+"/housalil/visiteur/authentification";
     }
 
@@ -19,7 +20,8 @@ public class Links {
         return SERVER_IP_ADDRESS+"/housalil/visiteur/inscription";
     }
 
-    public String getConsulterVisiteURL(){
+    public String getConsulterVisiteURL()
+    {
         return SERVER_IP_ADDRESS+"/housalil/client/consulterVisiteClient";
     }
 
@@ -27,7 +29,8 @@ public class Links {
         return SERVER_IP_ADDRESS+"/housalil/visiteur/rechercher";
     }
 
-    public String getPrendreVisiteURL(){
+    public String getPrendreVisiteURL()
+    {
         return SERVER_IP_ADDRESS+"/housalil/client/prendreVisite";
     }
 
@@ -36,18 +39,22 @@ public class Links {
     }
 
 
-    public String getConsulterVisiteAgent(){
+    public String getConsulterVisiteAgent()
+    {
         return SERVER_IP_ADDRESS+"/housalil/agent/consulterVisiteAgent";
     }
 
-    public String getConsulterCompteURL(){
+    public String getConsulterCompteURL()
+    {
         return  SERVER_IP_ADDRESS+"/housalil/utilisateur/consulterCompte";
     }
-    public String getModifierCompteURL(){
+    public String getModifierCompteURL()
+    {
         return SERVER_IP_ADDRESS+"/housalil/utilisateur/modifierCompte";
     }
 
-    public String getValiderVisiteURL(){
+    public String getValiderVisiteURL()
+    {
         return  SERVER_IP_ADDRESS+"/housalil/agent/validerVisite";
     }
 

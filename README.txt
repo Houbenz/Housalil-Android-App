@@ -8,6 +8,5 @@ To create webService in Eclipse:
 5- finish.
 6- put classes of control "RSData" in package where myResource.java exists.
 7- create other packages bean and control and put in their classes.
-8- alter control classes for database connection : "remove password "
 
 
